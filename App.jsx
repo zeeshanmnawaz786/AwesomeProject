@@ -1,23 +1,20 @@
-import {useState} from 'react';
-import {Text, View} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
+import React from 'react';
+import {githubData} from './githubData';
 
-function App() {
-  const [data, setData] = useState('ABCD_File');
+const App = () => {
+  const renderITemFunc = ({item}) => {
+    return (
+      <View>
+        <Text>{item.login}</Text>
+      </View>
+    );
+  };
   return (
     <View>
-      <HomeScreen dataABC={data} />
-    </View>
-  );
-}
-export default App;
-
-const HomeScreen = ({dataABC}) => {
-  const [data, setData] = useState('ABCD_File');
-
-  return (
-    <View>
-      <Text>Screen_1</Text>
-      <Text>Data: {data}</Text>
+      <FlatList data={githubData} renderItem={renderITemFunc} />
     </View>
   );
 };
+
+export default App;
